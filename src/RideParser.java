@@ -19,6 +19,11 @@ public class RideParser {
 
     ArrayList rideArray = new ArrayList();
 
+    public RideParser()
+    {
+        getFileInformation();
+    }
+
     public void getFileInformation() throws IOException
     {
         String line;
