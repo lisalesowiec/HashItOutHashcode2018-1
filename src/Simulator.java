@@ -4,8 +4,8 @@ public class Simulator {
     private Map map;
     private RideParser rp = new RideParser();
     private int steps = 0;
-    private ArrayList<Car> cars;
-    private ArrayList<Ride> rides;
+    private ArrayList<Car> cars = new ArrayList<>();
+    private ArrayList<Ride> rides = new ArrayList<>();
 
     public Simulator(){
 
@@ -14,7 +14,7 @@ public class Simulator {
             Location s = new Location(arr[0],arr[1]);
             Location f = new Location(arr[2],arr[3]);
 
-            Ride r = new Ride(s,f,arr[4],arr[5]);
+            Ride r = new Ride(s,f,arr[4],arr[5],i);
             rides.add(r);
         }
         int numbOfCars = rp.getNumOfCars();
@@ -31,10 +31,17 @@ public class Simulator {
     }
 
     public static void main(String[] args) {
+
+
         Simulator sim = new Simulator();
+        for(Car c: sim.cars){
+            Ride r = sim.findNearByRide(c);
+            c.setRide(r);
+        }
         while(!sim.allRidesDone()){
             sim.act();
         }
+        sim.writeCarInfo();
     }
 
 
@@ -52,8 +59,10 @@ public class Simulator {
                 c.setGetToRide(new Ride(c.getLocation(), r.getStartLoc()));
                 c.moveAsRide();
             } else {
+                // continue on current ride
                 c.moveAsRide();
             }
+            c.addJourney();
             /*else{
                 int x = calculateDistance(c.getLocation(),c.getCurrentRide().getStartLoc());
                 c.moveToRide(x); */
@@ -61,6 +70,15 @@ public class Simulator {
         }
     }
 
+
+
+    public void writeCarInfo()
+    {
+        for(Car c: cars)
+        {
+            System.out.println(c.getJournies());
+        }
+    }
 
 
     public Ride findNearByRide(Car car){
@@ -83,6 +101,7 @@ public class Simulator {
                 allDone = false;
             }
         }
+        System.out.println(allDone);
         return allDone;
     }
 
