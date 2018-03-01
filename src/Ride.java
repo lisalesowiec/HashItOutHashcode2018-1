@@ -4,20 +4,30 @@ public class Ride {
     private Location finishLoc;
     private int earliestStart;
     private int latestFinish;
+    private int actualStart;
 
-    public void setStart(Location start){
+    public Ride(Location startLoc, Location finishLoc, int earliestStart, int latestFinish){
+        this.startLoc = startLoc;
+        this.finishLoc = finishLoc;
+        this.earliestStart = earliestStart;
+        this.latestFinish = latestFinish;
+    }
+    
+    public Ride(){}
+
+    public void setStartLoc(Location start){
         startLoc = start;
     }
 
-    public Location getStart(){
-        return start;
+    public Location getStartLoc(){
+        return startLoc;
     }
 
-    public void setFinish(Location finish){
+    public void setFinishLoc(Location finish){
         finishLoc = finish;
     }
 
-    public Location getFinish(){
+    public Location getFinishLoc(){
         return finishLoc;
     }
 
@@ -30,14 +40,14 @@ public class Ride {
     }
 
     public void setLatestFinish(){
-        latestFinish = finish;
+        latestFinish = latestFinish;
     }
 
     public int getLatestFinish(){
         return latestFinish;
     }
-    
+
     public int stepsAwayFromFinish(){
-       return (startLoc.getX()-finishLoc.getX() + startLoc.getY()-finishLoc.getY());
+       return (Math.abs(startLoc.getX()-finishLoc.getX()) + Math.abs(startLoc.getY()-finishLoc.getY()));
     }
 }
