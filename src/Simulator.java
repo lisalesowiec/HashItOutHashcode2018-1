@@ -37,6 +37,7 @@ public class Simulator {
         for(Car c: sim.cars){
             Ride r = sim.findNearByRide(c);
             c.setRide(r);
+            r.claim();
         }
         while(!sim.allRidesDone()){
             sim.act();
@@ -56,6 +57,7 @@ public class Simulator {
             else if(!c.hasRide()){
                 Ride r = findNearByRide(c);
                 c.setRide(r);
+                r.claim();
                 c.setGetToRide(new Ride(c.getLocation(), r.getStartLoc()));
                 c.moveAsRide();
             } else {
@@ -82,11 +84,11 @@ public class Simulator {
 
     public Ride findNearByRide(Car car){
         Location carLoc = car.getLocation();
-        int shortestDist = calculateDistance(rides.get(0).getStartLoc(),car.getLocation());
+        int shortestDist = calculateDistance(rides.get(0).getStartLoc(),carLoc);
         Ride closest = rides.get(0);
         for(Ride r: rides){
             if(r.isClaimed()) {
-                if ((calculateDistance(r.getStartLoc(), car.getLocation())) < shortestDist) closest = r;
+                if ((calculateDistance(r.getStartLoc(), carLoc)) < shortestDist) closest = r;
             }
         }
         return closest;
