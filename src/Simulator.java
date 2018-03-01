@@ -4,10 +4,26 @@ public class Simulator {
     private Map map;
     private RideParser rp = new RideParser();
     private int steps = 0;
-    private ArrayList<Car> cars = new ArrayList<Car>();
+    private ArrayList<Car> cars;
     private ArrayList<Ride> rides;
 
     public Simulator(){
+
+        for(int i = 0; i < rp.getAllRides().size(); i++){
+            int[] arr = (int[])rp.getAllRides().get(i);
+            Location s = new Location(arr[0],arr[1]);
+            Location f = new Location(arr[2],arr[3]);
+
+            Ride r = new Ride(s,f,arr[4],arr[5]);
+            rides.add(r);
+        }
+        int numbOfCars = rp.getNumOfCars();
+
+        for(int i = 0; i<numbOfCars; i++){
+            Car x = new Car();
+            cars.add(x);
+        }
+
 
         int width = rp.getColumns();
         int depth = rp.getRows();
@@ -15,10 +31,33 @@ public class Simulator {
     }
 
     public static void main(String[] args) {
-        while (!allRidesDone()){
-
+        Simulator sim = new Simulator();
+        while(!sim.allRidesDone()){
+            sim.act();
         }
     }
+
+
+    private void act(){
+
+        for(Car c: cars){
+            if(c.hasRide() && c.getLocation().equals( c.getCurrentRide().getStartLoc())){
+                c.moveAsRide();
+            }
+            else if(!c.hasRide()){
+                Ride r = findNearByRide(c);
+                c.setRide(r);
+            }
+            else{
+                int x = calculateDistance(c.getLocation(),c.getCurrentRide().getStartLoc());
+                c.moveToRide(x);
+
+            }
+        }
+    }
+
+
+
     public Ride findNearByRide(Car car){
         Location carLoc = car.getLocation();
         int shortestDist = calculateDistance(rides.get(0).getStartLoc(),car.getLocation());

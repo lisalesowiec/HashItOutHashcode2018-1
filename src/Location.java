@@ -7,6 +7,10 @@ public class Location {
 
     }
 
+    public Location(int x, int y){
+        xCo = x;
+        yCo = y;
+    }
     public void setLocation(int x, int y){
         xCo = x;
         yCo = y;

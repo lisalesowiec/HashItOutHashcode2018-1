@@ -19,12 +19,18 @@ public class Car {
         return currentRide != null;
     }
 
+    public Ride getCurrentRide(){return currentRide;}
+
     public int distanceFromFinish() {
         return currentRide.getStepsAwayFromFinish();
     }
 
-    public void move() {
+    public void moveAsRide() {
         currentRide.step();
+    }
+
+    public void moveToRide(int x){
+        if(x==0) currentLocation = currentRide.getStartLoc();
     }
 
     public boolean isRideComplete(){
