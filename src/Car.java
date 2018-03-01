@@ -27,7 +27,7 @@ public class Car {
         currentRide.step();
     }
 
-    public boolean rideComplete(){
+    public boolean isRideComplete(){
         return currentRide.isComplete();
     }
 }
