@@ -2,6 +2,7 @@ public class Car {
 
     private Ride currentRide;
     private Location currentLocation;
+    private Ride getToRide;
 
     public Car() {
         currentLocation.setLocation(0, 0);
@@ -9,6 +10,10 @@ public class Car {
 
     public void setRide(Ride r) {
         currentRide = r;
+    }
+    
+    public void setGetToRide(Ride r){
+        getToRide = r;
     }
 
     public Location getLocation() {
@@ -26,7 +31,11 @@ public class Car {
     }
 
     public void moveAsRide() {
-        currentRide.step();
+        if(getToRide==null){
+            currentRide.step();
+        } else {
+            getToRide.step();
+        }
     }
 
     public void moveToRide(int x){
