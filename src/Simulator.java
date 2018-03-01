@@ -41,18 +41,23 @@ public class Simulator {
     private void act(){
 
         for(Car c: cars){
-            if(c.hasRide() && c.getLocation().equals( c.getCurrentRide().getStartLoc())){
+            //if car has a ride and currentLoc is startLoc of currentRide
+            if(c.hasRide() && c.getLocation().equals(c.getCurrentRide().getStartLoc())){
                 c.moveAsRide();
             }
+            //if no ride then find and assign a ride and move to it
             else if(!c.hasRide()){
                 Ride r = findNearByRide(c);
                 c.setRide(r);
+                c.setGetToRide(new Ride(c.getLocation(), r.getStartLoc()));
+                c.moveAsRide();
+            } else {
+                c.moveAsRide();
             }
-            else{
+            /*else{
                 int x = calculateDistance(c.getLocation(),c.getCurrentRide().getStartLoc());
-                c.moveToRide(x);
+                c.moveToRide(x); */
 
-            }
         }
     }
 
