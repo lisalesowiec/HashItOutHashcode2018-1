@@ -7,6 +7,7 @@ public class Ride {
     private int actualStart;
     private boolean claimed;
     private boolean complete;
+    private int stepsLeft;
 
     public Ride(Location startLoc, Location finishLoc, int earliestStart, int latestFinish){
         this.startLoc = startLoc;
@@ -15,6 +16,7 @@ public class Ride {
         this.latestFinish = latestFinish;
         claimed=false;
         complete=false;
+        stepsLeft=getStepsAwayFromFinish();
     }
 
     public Ride(){}
@@ -22,7 +24,7 @@ public class Ride {
     public void claim(){
         claimed=true;
     }
-    
+
     public void complete(){
         complete=true;
     }
@@ -30,7 +32,7 @@ public class Ride {
     public boolean isClaimed(){
         return claimed;
     }
-    
+
     public boolean isComplete(){
         return complete;
     }
@@ -69,6 +71,13 @@ public class Ride {
 
     public int getStepsAwayFromFinish(){
         return (Math.abs(startLoc.getX()-finishLoc.getX()) + Math.abs(startLoc.getY()-finishLoc.getY()));
+    }
+    
+    public void step(){
+        stepsLeft--;
+        if(stepsLeft<=0){
+            complete=true;
+        }
     }
 
 }
