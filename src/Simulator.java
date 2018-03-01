@@ -62,7 +62,6 @@ public class Simulator {
                 // continue on current ride
                 c.moveAsRide();
             }
-            c.addJourney();
             /*else{
                 int x = calculateDistance(c.getLocation(),c.getCurrentRide().getStartLoc());
                 c.moveToRide(x); */
@@ -101,7 +100,6 @@ public class Simulator {
                 allDone = false;
             }
         }
-        System.out.println(allDone);
         return allDone;
     }
 

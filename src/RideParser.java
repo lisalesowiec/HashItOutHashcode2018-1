@@ -39,7 +39,7 @@ public class RideParser {
         BufferedReader br = new BufferedReader(file);
         int counter =0;
 
-        int[] ride = new int[5];
+        int[] ride = new int[6];
         while((line = br.readLine()) != null )
         {
             String[] columns = line.split(" ");

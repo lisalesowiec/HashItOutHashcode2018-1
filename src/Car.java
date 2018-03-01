@@ -1,11 +1,14 @@
+import java.util.ArrayList;
+
 public class Car {
 
     private Ride currentRide;
     private Location currentLocation;
     private Ride getToRide;
+    ArrayList journeyList = new ArrayList();
 
     public Car() {
-        currentLocation.setLocation(0, 0);
+        currentLocation = new Location(0, 0);
     }
 
     public void setRide(Ride r) {
@@ -21,7 +24,8 @@ public class Car {
     }
 
     public boolean hasRide() {
-        return currentRide != null;
+        if(currentRide==null){ return false;}
+        else return !currentRide.isComplete();
     }
 
     public Ride getCurrentRide(){return currentRide;}
@@ -31,18 +35,42 @@ public class Car {
     }
 
     public void moveAsRide() {
-        if(getToRide==null){
+        if(getToRide ==null){
+
             currentRide.step();
-        } else {
-            getToRide.step();
-        }
+            isRideComplete();
+
+        } else if(getToRide.isComplete()) {
+            isRideComplete();
+            currentRide.step();
+        }else
+            {
+                getToRide.step();
+            }
+
+    }
+    public ArrayList getJournies()
+    {
+        return journeyList;
     }
 
+    public void addJourney()
+    {
+        if(currentRide.isComplete()) {
+            journeyList.add(currentRide);
+        }
+    }
     public void moveToRide(int x){
         if(x==0) currentLocation = currentRide.getStartLoc();
     }
 
     public boolean isRideComplete(){
-        return currentRide.isComplete();
+        if(currentRide.isComplete())
+        {
+            addJourney();
+            currentRide = null;
+            return true;
+        }
+        else return false;
     }
 }

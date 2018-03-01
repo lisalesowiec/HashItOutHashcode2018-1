@@ -94,6 +94,7 @@ public class Ride {
         if(stepsLeft<=0){
             complete=true;
         }
+        System.out.println(complete);
     }
 
 }
