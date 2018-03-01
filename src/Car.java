@@ -23,7 +23,4 @@ public class Car {
         return currentRide.stepsAwayFromFinish();
     }
 
-    public void moveStep(){
-        
-    }
 }
