@@ -1,3 +1,4 @@
+
 public class Location {
     private int xCo = 0;
     private int yCo = 0;
