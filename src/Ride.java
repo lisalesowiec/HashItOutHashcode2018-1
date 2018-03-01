@@ -5,12 +5,22 @@ public class Ride {
     private int earliestStart;
     private int latestFinish;
     private int actualStart;
+    private boolean complete;
 
     public Ride(Location startLoc, Location finishLoc, int earliestStart, int latestFinish){
         this.startLoc = startLoc;
         this.finishLoc = finishLoc;
         this.earliestStart = earliestStart;
         this.latestFinish = latestFinish;
+        complete=false;
+    }
+    
+    public void complete(){
+        complete = true;
+    }
+    
+    public boolean isComplete(){
+        return complete;
     }
     
     public Ride(){}
