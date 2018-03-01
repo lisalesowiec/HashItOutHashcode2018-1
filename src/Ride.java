@@ -36,4 +36,8 @@ public class Ride {
     public int getLatestFinish(){
         return latestFinish;
     }
+    
+    public int stepsAwayFromFinish(){
+       return (startLoc.getX()-finishLoc.getX() + startLoc.getY()-finishLoc.getY());
+    }
 }
