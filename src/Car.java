@@ -3,8 +3,16 @@ public class Car {
     private Ride currentRide;
     private Location currentLocation;
 
+    public Car(){
+        currentLocation.setLocation(0,0);
+    }
+    
     public void setRide(Ride r) {
         currentRide = r;
+    }
+
+    public Location getLocation() {
+        return currentLocation;
     }
 
     public boolean hasRide(){
@@ -12,6 +20,10 @@ public class Car {
     }
 
     public int distanceFromFinish(){
-        currentRide.stepsAwayFromFinish();
+        return currentRide.stepsAwayFromFinish();
+    }
+
+    public void moveStep(){
+        
     }
 }
