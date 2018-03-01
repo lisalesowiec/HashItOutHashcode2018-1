@@ -1,4 +1,5 @@
 import java.io.*;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,15 +22,21 @@ public class RideParser {
 
     public RideParser()
     {
-        getFileInformation();
+        try{
+            getFileInformation();
+        }catch (IOException e){
+            System.out.println("errorrororororor");
+        }
+
     }
 
     public void getFileInformation() throws IOException
     {
         String line;
-        String path = "C:\\Users\\Will Deary\\IdeaProjects\\HashCode\\test.txt";
-        FileReader file = new FileReader(path);
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        String path = "a_example.in";
+        File f = new File(path);
+        FileReader file = new FileReader(new File(path));
+        BufferedReader br = new BufferedReader(file);
         int counter =0;
 
         int[] ride = new int[5];
