@@ -11,12 +11,18 @@ public class RideParser {
     public int onTimeBonus;
     public int maxSteps;
 
-    public int coordinateA, rows = 0;
-    public int coordinateB, cols = 1;
-    public int coordinateC, cars = 2;
-    public int coordinateD, rides = 3;
-    public int start, timeBonus = 4;
-    public int end, totalSteps = 5;
+    public int rows = 0;
+    public int coordinateA = 0;
+    public int cols = 1;
+    public int coordinateB = 1;
+    public int cars = 2;
+    public int coordinateC = 2;
+    public int rides = 3;
+    public int  coordinateD = 3;
+    public int timeBonus = 4;
+    public int start = 4;
+    public int totalSteps = 5;
+    public int end = 5;
 
     ArrayList rideArray = new ArrayList();
 
@@ -43,6 +49,7 @@ public class RideParser {
         while((line = br.readLine()) != null )
         {
             String[] columns = line.split(" ");
+
             if(counter==0)
             {
                 numOfRows = Integer.parseInt(columns[rows]);
