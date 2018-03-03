@@ -5,7 +5,7 @@ public class Car {
     private Ride currentRide;
     private Location currentLocation;
     private Ride getToRide;
-    ArrayList journeyList = new ArrayList();
+    ArrayList<Ride> journeyList = new ArrayList<>();
 
     public Car() {
         currentLocation = new Location(0, 0);

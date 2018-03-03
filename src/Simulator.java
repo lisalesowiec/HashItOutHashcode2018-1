@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.io.*;
 public class Simulator {
     private Map map;
     private RideParser rp = new RideParser();
@@ -23,8 +23,6 @@ public class Simulator {
             Car x = new Car();
             cars.add(x);
         }
-
-
         int width = rp.getColumns();
         int depth = rp.getRows();
         makeMap(width,depth);
@@ -41,7 +39,11 @@ public class Simulator {
         }
         while(!sim.allRidesDone()){
             sim.act();
+            System.out.println("simulating");
+
         }
+
+        System.out.println("writing");
         sim.writeCarInfo();
     }
 
@@ -75,9 +77,21 @@ public class Simulator {
 
     public void writeCarInfo()
     {
-        for(Car c: cars)
-        {
-            System.out.println(c.getJournies());
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt", true));
+            int index = 0;
+            for (Car c : cars) {
+                String s;
+                s = index + "";
+                ArrayList<Ride> journies = c.getJournies();
+                for (Ride i : journies) {
+                    s += " " + i.getId();
+                }
+                index++;
+                bw.write(s + "\n");
+            }
+        } catch (IOException e){
+            System.out.println("IOException in printing innit");
         }
     }
 
